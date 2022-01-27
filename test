@@ -1,29 +1,23 @@
-# .bashrc
+2022-01-27 01:26:38,452 p=460203 u=infra2 n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-# User specific environment
-PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-export PATH
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-alias podman="sudo -u podman -i /usr/bin/podman"
-alias buildah="sudo -u podman -i /usr/bin/buildah"
-alias skopeo="sudo -u podman -i /usr/bin/skopeo"
-export JRUBY_HOME=/home/abc/goldenversions/jruby-9.2.17.0:
-export PATH=/home/abc/goldenversions/jruby-9.2.17.0/bin:/home/abc/.local/bin:/home/abc/bin:/home/abc/.local/bin:/home/abc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/tss/bin:/opt/puppetlabs/bin
-export JRUBY_HOME=/home/abc/goldenversions/jruby-9.2.17.0:
-export JRUBY_HOME=/home/abc/goldenversions/jruby-9.2.17.0:
-export JRUBY_HOME=/home/abc/goldenversions/jruby-9.3.0.0:
-export PATH=/home/abc/goldenversions/jruby-9.3.0.0/bin:/home/abc/goldenversions/jruby-9.2.17.0/bin:/home/abc/.local/bin:/home/abc/bin:/home/abc/.local/bin:/home/abc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/tss/bin:/opt/puppetlabs/bin
-export PATH=/home/abc/goldenversions/redhatopenjdk-8/bin:/home/abc/goldenversions/jruby-9.3.0.0/bin:/home/abc/goldenversions/jruby-9.2.17.0/bin:/home/abc/.local/bin:/home/abc/bin:/home/abc/.local/bin:/home/abc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/tss/bin:/opt/puppetlabs/bin
-export PATH=/home/abc/goldenversions/camunda-7.15.0/bin:/home/abc/goldenversions/redhatopenjdk-8/bin:/home/abc/goldenversions/jruby-9.3.0.0/bin:/home/abc/goldenversions/jruby-9.2.17.0/bin:/home/abc/.local/bin:/home/abc/bin:/home/abc/.local/bin:/home/abc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/tss/bin:/opt/puppetlabs/bin
-export JRUBY_HOME=/home/abc/goldenversions/jruby-9.2.17.0:
-export PATH=/home/abc/goldenversions/7zip-21.01:/home/abc/goldenversions/camunda-7.15.0/bin:/home/abc/goldenversions/redhatopenjdk-8/bin:/home/abc/goldenversions/jruby-9.3.0.0/bin:/home/abc/goldenversions/jruby-9.2.17.0/bin:/home/abc/.local/bin:/home/abc/bin:/home/abc/.local/bin:/home/abc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/tss/bin:/opt/puppetlabs/bin
-export JRUBY_HOME=/home/abc/goldenversions/jruby-9.3.0.0:
+2022-01-27 01:26:38,810 p=460203 u=infra2 n=ansible | PLAY [install 7zip] ******************************************************************************************************************************************
+2022-01-27 01:26:38,825 p=460203 u=infra2 n=ansible | TASK [Gathering Facts] ***************************************************************************************************************************************
+2022-01-27 01:26:40,808 p=460203 u=infra2 n=ansible | ok: [localhost]
+2022-01-27 01:26:40,828 p=460203 u=infra2 n=ansible | TASK [7zip : include_vars] ***********************************************************************************************************************************
+2022-01-27 01:26:40,851 p=460203 u=infra2 n=ansible | ok: [localhost]
+2022-01-27 01:26:40,870 p=460203 u=infra2 n=ansible | TASK [7zip : Create a temp directory if it does not exist] ***************************************************************************************************
+2022-01-27 01:26:41,243 p=460203 u=infra2 n=ansible | ok: [localhost]
+2022-01-27 01:26:41,262 p=460203 u=infra2 n=ansible | TASK [7zip : Create the goldenversions directory if it does not exist] ***************************************************************************************
+2022-01-27 01:26:41,532 p=460203 u=infra2 n=ansible | ok: [localhost]
+2022-01-27 01:26:41,558 p=460203 u=infra2 n=ansible | TASK [Downloading 7zip from https://cache.artifactory.abc.com/artifactory/gfae/end-user-services/desktop-software/core-desktop-applications/7zip/21.01/7zip-21.01.tar.xz] ***
+2022-01-27 01:26:42,275 p=460203 u=infra2 n=ansible | changed: [localhost]
+2022-01-27 01:26:42,302 p=460203 u=infra2 n=ansible | TASK [7zip : Creating Dir into /home/infra2/goldenversions] **************************************************************************************************
+2022-01-27 01:26:42,574 p=460203 u=infra2 n=ansible | changed: [localhost]
+2022-01-27 01:26:42,599 p=460203 u=infra2 n=ansible | TASK [Extract /home/infra2/.eittemp/7zip-21.01.tar.xz into /home/infra2/goldenversions] **********************************************************************
+2022-01-27 01:26:43,733 p=460203 u=infra2 n=ansible | changed: [localhost]
+2022-01-27 01:26:43,753 p=460203 u=infra2 n=ansible | TASK [7zip : update PATH] ************************************************************************************************************************************
+2022-01-27 01:26:44,138 p=460203 u=infra2 n=ansible | changed: [localhost]
+2022-01-27 01:26:44,158 p=460203 u=infra2 n=ansible | TASK [7zip : Delete the zip file] ****************************************************************************************************************************
+2022-01-27 01:26:44,413 p=460203 u=infra2 n=ansible | changed: [localhost]
+2022-01-27 01:26:44,415 p=460203 u=infra2 n=ansible | PLAY RECAP ***************************************************************************************************************************************************
+2022-01-27 01:26:44,416 p=460203 u=infra2 n=ansible | localhost                  : ok=9    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
