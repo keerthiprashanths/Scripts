@@ -38,7 +38,7 @@ then
 	OLD_VERSION=($($jq -r '.'$PRODUCT'.version' $JSONFILE))
 	OLD_INSTALPATH=($($jq -r '.'$PRODUCT'."'$OLD_VERSION'".locationOfInstallation' $JSONFILE))
 	if [ "$OLD_VERSION" == "null" ] ; then 
-		OLD_VERSION = ""
+		OLD_VERSION=""
 	fi
 else
 	echo "JsonFile Not Present"
@@ -61,7 +61,7 @@ fi
 
 gold_dir="/home/infr/*"
 
-if [ "$OLD_VERSION" != "" ] ; then
+if [ "$OLD_VERSION" = "" ] ; then
 
 	for dir in $gold_dir
 	do
@@ -84,9 +84,7 @@ echo $INSTALPATH
 if [ "$OLD_VERSION" = "" ] ; then
 	api_response_new=`curl https://reqbin.com/echo/get/json   2> /dev/null`
 	if [ "$api_response_new" = "{\"success\":\"true\"}" ] ; then
-		printf "\n New version is vulnerable"
-		printf "\n Exitting ..."
-		exit()
+		exit "New version is vulnerable"
 	fi
 else
 	api_response_old=`curl https://reqbin.com/echo/get/json   2> /dev/null`
@@ -98,9 +96,7 @@ else
 		old_removed="True"
 	fi
 	if [ "$api_response_new" = "{\"success\":\"true\"}" ] ; then
-		printf "\n New version is vulnerable"
-		printf "\n Exitting ..."
-		exit()
+		exit "New version is vulnerable"
 	fi
 	if [ "$old_removed" = "False" ] ; then
 		op=`sh cleanup.sh`
