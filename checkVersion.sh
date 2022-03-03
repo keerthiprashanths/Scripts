@@ -37,6 +37,9 @@ if [ -f "$JSONFILE" ]
 then
 	OLD_VERSION=($($jq -r '.'$PRODUCT'.version' $JSONFILE))
 	OLD_INSTALPATH=($($jq -r '.'$PRODUCT'."'$OLD_VERSION'".locationOfInstallation' $JSONFILE))
+	if [ "$OLD_VERSION" == "null" ] ; then 
+		OLD_VERSION = ""
+	fi
 else
 	echo "JsonFile Not Present"
 fi
