@@ -1,0 +1,38 @@
+export JRUBY_HOME=/home/infra2/goldenvversions/jruby-9.2.17.0:
+export PATH12=/home/infra2/goldenversions/jruby-9.3.0.0/bin:/home/infra2/goldenversions/jruby-9.2.17.0/bin:/home/infra2/.local/bin:/home/infra2/bin:
+====================================================================================================================================================
+Need variables below:
+
+OLD_PRODUCT=$1
+OLD_VERSION=$2
+OLD_PRODUCT_PATH=$3
+
+NEW_PRODUCT=$1
+NEW_VERSION=$2
+
+====================================================================================================================================================
+cleanup.sh
+
+cleanup()
+{
+
+#OLD_PRODUCT=$1
+#OLD_VERSION=$2
+OLD_PRODUCT=jruby-
+OLD_VERSION=9.3.0.0
+#OLD_PRODUCT_PATH=$3
+
+#Remove old Jruby software directory
+OLD_JRUBY_HOME=`cat .bashrc | grep "JRUBY_HOME" | head -1 | cut -d"=" -f2 | cut -d":" -f1`
+echo $OLD_JRUBY_HOME
+sudo rm -rf $OLD_JRUBY_HOME
+
+#Remove old environment variables
+TMP_FILE=./new_version.info
+cat .bashrc.bak | grep $OLD_PRODUCT$OLD_VERSION >$TMP_FILE
+sed -i /jruby-/d .bashrc
+cat $TMP_FILE | grep JRUBY_HOME >>~/.bashrc && cat $TMP_FILE | grep PATH | cut -d":" --complement -f2 >>~/.bashrc
+source ~/.bashrc
+}
+cleanup
+========================================================================================================================================================
