@@ -33,6 +33,17 @@ cat .bashrc.bak | grep $OLD_PRODUCT$OLD_VERSION >$TMP_FILE
 sed -i /jruby-/d .bashrc
 cat $TMP_FILE | grep JRUBY_HOME >>~/.bashrc && cat $TMP_FILE | grep PATH | cut -d":" --complement -f2 >>~/.bashrc
 source ~/.bashrc
+
+*********************
+
+PCOUNT=`cat ~/.bashrc | grep -e "$OLD_PRODUCT" | grep -e _HOME |wc -l`
+PATH_UPDT=`cat ~/.bashrc | grep $OLD_PRODUCT_CAPS | grep _HOME | cut -d"=" -f2 | cut -d":" -f1`
+if [ $PCOUNT == 1 ] && [ `echo $PATH_UPDT | wc -l` == 1 ];then
+source ~/.bashrc
+PATH=$PATH_UPDT/bin:$PATH
+sed -i /"export PATH"/d ~/.bashrc
+echo export PATH=`echo $PATH`>>~/.bashrc
+fi
 }
 cleanup
 ========================================================================================================================================================
