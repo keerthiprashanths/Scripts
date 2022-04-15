@@ -1,0 +1,21 @@
+FILE=/home/siripm73/arti.txt
+TMP_FILE1=/home/siripm73/arti.tmp1
+TMP_FILE2=/home/siripm73/arti.tmp2
+
+
+if [ -s "$TMP_FILE1" ]; then
+#sed -i "1i The listed products are modified 15days ago\n" $TMP_FILE
+for product_name in `cat $TMP_FILE1 | grep ^https | cut -d"/" -f7 | uniq`
+do
+for product_link in `cat $FILE | grep "$product_name" | grep -e '.tar.gz' -e '.zip' | tr -d " \t\n\r" | sed 's/""/\n/g' | sed 's/^"//g' | sed 's/"$//g' | grep -v 'lin_runner.sh\|win_runner.bat' | sort | uniq | cut -d'"' -f3`
+do
+echo $product_link >>$TMP_FILE2
+done
+done
+fi
+cat $TMP_FILE1 >>$TMP_FILE2
+
+for product_name in `cat $TMP_FILE2`
+do
+echo "curl command"
+done
