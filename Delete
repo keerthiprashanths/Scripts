@@ -1,9 +1,1 @@
-for product_link in `cat $TMP_FILE | grep https | awk '{print $3}'`
-do
-echo deleting the product: $product_link
-echo "press 'y' to continue: "
-read response
-if [ "$response" == "y" ];then
-curl .... $product_link
-fi
-done
+awk '/'$product'/,/subProducts/{ f = 1 } f' soft_pur.txt | awk 'c&&!--c;/subProducts/{c=2}' | cut -d'"' -f4
