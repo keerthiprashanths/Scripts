@@ -1,1 +1,7 @@
 awk '/'$product'/,/subProducts/{ f = 1 } f' soft_pur.txt | awk 'c&&!--c;/subProducts/{c=2}' | cut -d'"' -f4
+
+sed -i '$ s/.$/./' $SUB_PRODUCT_ID
+echo -e "{\n \"ids\":[" >temp.json1
+cat $SUB_PRODUCT_ID >>temp.json1
+echo -e "     ]\n}" >>temp.json1
+cat temp.json1
